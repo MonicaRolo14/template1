@@ -25,13 +25,13 @@ jobs:
           repositoryId="$(gh api graphql -f query='{repository(${{ github.repository }}){id}}' -q .data.repository.id)"
           gh api graphql -f query='mutation($repositoryId:ID!,$branch:String!) {
             createBranchProtectionRule(input: {
-            repositoryId: $repositoryId
-            pattern: $branch
-            allowsDeletions: false
-            allowsForcePushes: false
-            requiredApprovingReviewCount: 1
-            requiresStatusChecks: true
-            requiresStrictStatusChecks: true
-            restrictsPushes: true
-            lockBranch: true
-          }) { clientMutationId } }' -f repositoryId="$repositoryId" -f branch=master
+              repositoryId: $repositoryId
+              pattern: $branch
+              allowsDeletions: false
+              allowsForcePushes: false
+              requiredApprovingReviewCount: 1
+              requiresStatusChecks: true
+              requiresStrictStatusChecks: true
+              restrictsPushes: true
+              lockBranch: true
+            }) { clientMutationId } }' -f repositoryId="$repositoryId" -f branch=master
