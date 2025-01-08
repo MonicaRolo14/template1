@@ -18,6 +18,8 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Restrict master branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo "Restrict master branch"
           repositoryId="$(gh api graphql -f query='{repository(${{ github.repository }}){id}}' -q .data.repository.id)"
