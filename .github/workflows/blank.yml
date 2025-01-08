@@ -17,9 +17,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set up GitHub CLI
-        uses: actions/setup-gh@v2
-
       - name: Restrict master branch
         run: |
           echo "Restrict master branch"
