@@ -23,7 +23,7 @@ jobs:
       - name: Restrict master branch
         run: |
           echo "Restrict master branch"
-          repositoryId="$(gh api graphql -f query='{repository(owner:\"owner\",name:\"repo\"){id}}' -q .data.repository.id)"
+          repositoryId="$(gh api graphql -f query='{repository(${{ github.repository }}){id}}' -q .data.repository.id)"
           gh api graphql -f query='mutation($repositoryId:ID!,$branch:String!) {
             createBranchProtectionRule(input: {
             repositoryId: $repositoryId
