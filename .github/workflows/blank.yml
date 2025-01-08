@@ -34,4 +34,4 @@ jobs:
             requiresStrictStatusChecks: true
             restrictsPushes: true
             lockBranch: true
-            }) { clientMutationId } }' -f repositoryId="$repositoryId" -f branch=master
+          }) { clientMutationId } }' -f repositoryId="$repositoryId" -f branch=master
