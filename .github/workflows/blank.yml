@@ -6,27 +6,20 @@ on:
     branches:
       - main
 
-# Reference https://docs.github.com/en/actions/security-guides/automatic-token-authentication
-permissions:
-  # Need `contents: read` to checkout the repository
-  # Need `contents: write` to update the step metadata
-  # Need `pull-requests: write` to create a pull request
-  contents: write
-  pull-requests: write
-
 jobs:
   # Get the current step from .github/script/STEP so we can
   # limit running the main job when the learner is on the same step.
   prevent-direct-commits:
-    name: Check current step number
+    name: Lock master branch
     runs-on: ubuntu-latest
 
     steps:
-      # We'll need to check out the repository so that we can edit the README
-      - name: Checkout
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-      # Make a branch, file, commit, and pull request for the learner
+      - name: Set up GitHub CLI
+        uses: actions/setup-gh@v2
+
       - name: Restrict master branch
         run: |
           echo "Restrict master branch"
